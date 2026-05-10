@@ -1,849 +1,1712 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eren Güneşer — Full Stack & iOS Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eren Güneşer — Full Stack & iOS Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+      integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+      integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+      integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    :root {
-      --bg: #0a0a0f;
-      --bg2: #111118;
-      --bg3: #18181f;
-      --card: #1c1c26;
-      --card-hover: #22222e;
-      --border: rgba(255,255,255,0.07);
-      --border-hover: rgba(255,255,255,0.14);
-      --text: #f0f0f5;
-      --text-sub: #8888aa;
-      --text-dim: #555570;
-      --accent: oklch(72% 0.22 270);
-      --accent2: oklch(72% 0.22 200);
-      --accent3: oklch(72% 0.22 330);
-      --accent-glow: oklch(72% 0.22 270 / 0.18);
-      --radius: 18px;
-      --radius-sm: 10px;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+      :root {
+        --bg: #0a0a0f;
+        --bg2: #111118;
+        --bg3: #18181f;
+        --card: #1c1c26;
+        --card-hover: #22222e;
+        --border: rgba(255, 255, 255, 0.07);
+        --border-hover: rgba(255, 255, 255, 0.14);
+        --text: #f0f0f5;
+        --text-sub: #8888aa;
+        --text-dim: #555570;
+        --accent: oklch(72% 0.22 270);
+        --accent2: oklch(72% 0.22 200);
+        --accent3: oklch(72% 0.22 330);
+        --accent-glow: oklch(72% 0.22 270 / 0.18);
+        --radius: 18px;
+        --radius-sm: 10px;
+        --font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      }
 
-    html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
 
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--bg3);
+        border-radius: 3px;
+      }
 
-    /* Noise texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
+      /* Noise texture overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+      }
 
-    #root { position: relative; z-index: 1; }
-  </style>
-</head>
-<body>
-  <div id="root"></div>
-  <script type="text/babel">
-    const { useState, useEffect, useRef } = React;
+      #root {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const { useState, useEffect, useRef } = React;
 
-    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-      "accentHue": 270,
-      "showBio": true,
-      "compactNav": false,
-      "lang": "en"
-    }/*EDITMODE-END*/;
+      const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/ {
+        accentHue: 270,
+        showBio: true,
+        compactNav: false,
+        lang: "en",
+      }; /*EDITMODE-END*/
 
-    // ── DATA ──────────────────────────────────────────────────────────────────
+      // ── DATA ──────────────────────────────────────────────────────────────────
 
-    const copy = {
-      en: {
-        nav: { about: "About", projects: "Projects", skills: "Skills", faq: "FAQ", contact: "Contact" },
-        hero: {
-          greeting: "Hey, I'm",
-          title: "Full Stack & iOS Developer",
-          sub: "Building apps people actually use — from Swift to Python, from UI to backend.",
-          cta: "View My Work",
-          cta2: "Get in Touch",
-          badge: "Open to Internships",
+      const copy = {
+        en: {
+          nav: {
+            about: "About",
+            projects: "Projects",
+            skills: "Skills",
+            faq: "FAQ",
+            contact: "Contact",
+          },
+          hero: {
+            greeting: "Hey, I'm",
+            title: "Full Stack & iOS Developer",
+            sub: "Building apps people actually use — from Swift to Python, from UI to backend.",
+            cta: "View My Work",
+            cta2: "Get in Touch",
+            badge: "Open to Internships",
+          },
+          about: {
+            label: "About Me",
+            heading: "Developer by passion, student by day",
+            p1: "I'm a software development student at WSB Merito University of Wrocław, Poland — with 4–5 years of hands-on experience building things I care about.",
+            p2: "iOS development is where my heart is, but I love the full picture: designing interfaces, wiring up backends, and everything in between. Currently living in Wrocław and actively looking for an internship to grow alongside a great team.",
+            p3: "When I'm not coding, I'm probably deep in a TV show rabbit hole — or building something no one asked for but everyone secretly needs.",
+            location: "📍 Wrocław, Poland",
+            school: "🎓 WSB Merito Wrocław — Software Development",
+            status: "🟢 Actively seeking internship",
+          },
+          projects: {
+            label: "My Projects",
+            heading: "Things I've shipped",
+            sub: "Personal projects I built out of curiosity, frustration, or just for fun.",
+            items: [
+              {
+                id: "rempay",
+                name: "RemPay",
+                tag: "iOS · Swift · SwiftUI",
+                color: "var(--accent)",
+                status: "App Store Soon",
+                desc: "A personal finance app that tracks income & expenses in real time. Sends smart payment reminders via local notifications and fetches live exchange rates through a lightweight TypeScript backend I built.",
+                highlights: [
+                  "Real-time income/expense tracking",
+                  "Automated payment reminders",
+                  "Live exchange rates via TS backend",
+                  "Local data persistence",
+                ],
+              },
+              {
+                id: "watchcompare",
+                name: "WatchCompare",
+                tag: "Web · HTML · CSS · JS",
+                color: "var(--accent2)",
+                status: "Ready to Launch",
+                desc: "A web tool for obsessive TV show fans (me). Compare episode, season, and series-level ratings across multiple shows side by side. Built from scratch with vanilla JS.",
+                highlights: [
+                  "Episode-level rating comparison",
+                  "Side-by-side visualization",
+                  "Season & series aggregation",
+                  "Vanilla JS, zero dependencies",
+                ],
+              },
+            ],
+          },
+          skills: {
+            label: "Skills",
+            heading: "My tech stack",
+            sub: "What I'm confident with, and what I'm still leveling up.",
+            groups: [
+              { name: "Strong", items: ["Python", "Swift", "SwiftUI"] },
+              {
+                name: "Proficient",
+                items: ["HTML", "CSS", "TypeScript", "JavaScript"],
+              },
+              {
+                name: "Familiar",
+                items: [
+                  "SQL",
+                  "C++",
+                  "C#",
+                  "Django",
+                  "scikit-learn",
+                  "pandas",
+                  "numpy",
+                  "matplotlib",
+                ],
+              },
+            ],
+          },
+          faq: {
+            label: "FAQ",
+            heading: "Frequently Asked Questions",
+            items: [
+              {
+                q: "Are you available for internships?",
+                a: "Yes! I'm actively looking for internship opportunities, preferably in iOS development or full-stack. Remote or hybrid in Europe works great for me.",
+              },
+              {
+                q: "What's your preferred tech for a new project?",
+                a: "For iOS apps: Swift + SwiftUI, no question. For the web: I keep it lightweight — vanilla JS or TypeScript with a Django or Node backend.",
+              },
+              {
+                q: "Can you work in English?",
+                a: "Absolutely — this portfolio is proof! I work, communicate, and document in English daily.",
+              },
+              {
+                q: "Are your projects open source?",
+                a: "My GitHub has most of my work. RemPay and WatchCompare are personal projects; open-source contributions are coming soon.",
+              },
+              {
+                q: "Where are you based?",
+                a: "Wrocław, Poland. Open to remote, hybrid, or relocation for the right opportunity.",
+              },
+            ],
+          },
+          contact: {
+            label: "Contact",
+            heading: "Let's talk",
+            sub: "Have an internship, a project idea, or just want to say hi?",
+            email: "selim627eren@gmail.com",
+            links: [
+              {
+                name: "GitHub",
+                url: "https://github.com/LUINADLE",
+                icon: "gh",
+              },
+              {
+                name: "LinkedIn",
+                url: "https://www.linkedin.com/in/erenguneser/",
+                icon: "li",
+              },
+              {
+                name: "Email",
+                url: "mailto:selim627eren@gmail.com",
+                icon: "em",
+              },
+            ],
+          },
         },
-        about: {
-          label: "About Me",
-          heading: "Developer by passion, student by day",
-          p1: "I'm a software development student at WSB Merito University of Wrocław, Poland — with 4–5 years of hands-on experience building things I care about.",
-          p2: "iOS development is where my heart is, but I love the full picture: designing interfaces, wiring up backends, and everything in between. Currently living in Wrocław and actively looking for an internship to grow alongside a great team.",
-          p3: "When I'm not coding, I'm probably deep in a TV show rabbit hole — or building something no one asked for but everyone secretly needs.",
-          location: "📍 Wrocław, Poland",
-          school: "🎓 WSB Merito Wrocław — Software Development",
-          status: "🟢 Actively seeking internship",
+        tr: {
+          nav: {
+            about: "Hakkımda",
+            projects: "Projeler",
+            skills: "Yetenekler",
+            faq: "SSS",
+            contact: "İletişim",
+          },
+          hero: {
+            greeting: "Merhaba, ben",
+            title: "Full Stack & iOS Geliştirici",
+            sub: "Swift'ten Python'a, arayüzden backend'e — gerçekten kullanılan uygulamalar yapıyorum.",
+            cta: "Çalışmalarıma Bak",
+            cta2: "İletişime Geç",
+            badge: "Staj Arıyorum",
+          },
+          about: {
+            label: "Hakkımda",
+            heading: "Tutkuyla geliştirici, gündüzleri öğrenci",
+            p1: "Polonya'daki WSB Merito Wrocław Üniversitesi'nde Yazılım Geliştirme bölümünde okuyorum — 4-5 yıldır aktif olarak yazılım üretiyorum.",
+            p2: "iOS geliştirme benim için özel bir yer tutuyor, ama işin tamamını seviyorum: arayüz tasarlamak, backend kurmak ve her şeyi birbirine bağlamak. Şu an Wrocław'da yaşıyorum ve harika bir ekiple büyümek için staj arıyorum.",
+            p3: "Kod yazmadığım zamanlarda muhtemelen bir dizi maratonu yapıyorumdur — ya da kimsenin istemediği ama herkesin aslında ihtiyaç duyduğu bir şey inşa ediyorumdur.",
+            location: "📍 Wrocław, Polonya",
+            school: "🎓 WSB Merito Wrocław — Yazılım Geliştirme",
+            status: "🟢 Aktif olarak staj arıyorum",
+          },
+          projects: {
+            label: "Projelerim",
+            heading: "Yaptıklarım",
+            sub: "Meraktan, sinirden ya da sadece eğlenmek için yaptığım kişisel projeler.",
+            items: [
+              {
+                id: "rempay",
+                name: "RemPay",
+                tag: "iOS · Swift · SwiftUI",
+                color: "var(--accent)",
+                status: "Yakında App Store'da",
+                desc: "Gelir ve giderleri gerçek zamanlı takip eden kişisel finans uygulaması. Yerel bildirimlerle akıllı ödeme hatırlatmaları gönderir; kur verisini benim yazdığım TypeScript backend üzerinden çeker.",
+                highlights: [
+                  "Gerçek zamanlı gelir/gider takibi",
+                  "Otomatik ödeme hatırlatmaları",
+                  "TS backend ile canlı kur verisi",
+                  "Yerel veri kalıcılığı",
+                ],
+              },
+              {
+                id: "watchcompare",
+                name: "WatchCompare",
+                tag: "Web · HTML · CSS · JS",
+                color: "var(--accent2)",
+                status: "Lansmana Hazır",
+                desc: "Obsesif dizi izleyiciler için (yani ben için) yapılmış bir web aracı. Birden fazla dizinin bölüm, sezon ve genel puanlarını yan yana karşılaştır. Sıfırdan vanilla JS ile yazıldı.",
+                highlights: [
+                  "Bölüm bazlı puan karşılaştırması",
+                  "Yan yana görselleştirme",
+                  "Sezon & seri toplamları",
+                  "Vanilla JS, sıfır bağımlılık",
+                ],
+              },
+            ],
+          },
+          skills: {
+            label: "Yetenekler",
+            heading: "Teknoloji yığınım",
+            sub: "Güçlü olduğum yerler ve hâlâ geliştirdiğim şeyler.",
+            groups: [
+              { name: "Güçlü", items: ["Python", "Swift", "SwiftUI"] },
+              {
+                name: "Yetkin",
+                items: ["HTML", "CSS", "TypeScript", "JavaScript"],
+              },
+              {
+                name: "Tanışıklık",
+                items: [
+                  "SQL",
+                  "C++",
+                  "C#",
+                  "Django",
+                  "scikit-learn",
+                  "pandas",
+                  "numpy",
+                  "matplotlib",
+                ],
+              },
+            ],
+          },
+          faq: {
+            label: "SSS",
+            heading: "Sık Sorulan Sorular",
+            items: [
+              {
+                q: "Staj için müsait misin?",
+                a: "Evet! Aktif olarak staj arıyorum, tercihen iOS geliştirme veya full-stack alanında. Uzaktan veya Avrupa'da hibrit çalışma benim için mükemmel.",
+              },
+              {
+                q: "Yeni bir proje için tercih ettiğin teknoloji nedir?",
+                a: "iOS uygulamaları için: Swift + SwiftUI, tartışmasız. Web için: hafif tutmayı seviyorum — vanilla JS veya TypeScript, Django ya da Node backend ile.",
+              },
+              {
+                q: "İngilizce çalışabilir misin?",
+                a: "Kesinlikle — bu portfolyo bunun kanıtı! İngilizce'yi iş, iletişim ve dokümantasyon için günlük olarak kullanıyorum.",
+              },
+              {
+                q: "Projeler açık kaynak mı?",
+                a: "GitHub'ımda çoğu çalışmam var. RemPay ve WatchCompare kişisel projeler; yakında açık kaynak katkıları da gelecek.",
+              },
+              {
+                q: "Nerede yaşıyorsun?",
+                a: "Wrocław, Polonya. Uzaktan, hibrit veya doğru fırsat için taşınmaya açığım.",
+              },
+            ],
+          },
+          contact: {
+            label: "İletişim",
+            heading: "Konuşalım",
+            sub: "Staj teklifi, proje fikri ya da sadece merhaba mı demek istiyorsun?",
+            email: "selim627eren@gmail.com",
+            links: [
+              {
+                name: "GitHub",
+                url: "https://github.com/LUINADLE",
+                icon: "gh",
+              },
+              {
+                name: "LinkedIn",
+                url: "https://www.linkedin.com/in/erenguneser/",
+                icon: "li",
+              },
+              {
+                name: "Email",
+                url: "mailto:selim627eren@gmail.com",
+                icon: "em",
+              },
+            ],
+          },
         },
-        projects: {
-          label: "My Projects",
-          heading: "Things I've shipped",
-          sub: "Personal projects I built out of curiosity, frustration, or just for fun.",
-          items: [
-            {
-              id: "rempay",
-              name: "RemPay",
-              tag: "iOS · Swift · SwiftUI",
-              color: "var(--accent)",
-              status: "App Store Soon",
-              desc: "A personal finance app that tracks income & expenses in real time. Sends smart payment reminders via local notifications and fetches live exchange rates through a lightweight TypeScript backend I built.",
-              highlights: ["Real-time income/expense tracking", "Automated payment reminders", "Live exchange rates via TS backend", "Local data persistence"],
-            },
-            {
-              id: "watchcompare",
-              name: "WatchCompare",
-              tag: "Web · HTML · CSS · JS",
-              color: "var(--accent2)",
-              status: "Ready to Launch",
-              desc: "A web tool for obsessive TV show fans (me). Compare episode, season, and series-level ratings across multiple shows side by side. Built from scratch with vanilla JS.",
-              highlights: ["Episode-level rating comparison", "Side-by-side visualization", "Season & series aggregation", "Vanilla JS, zero dependencies"],
-            },
-          ],
-        },
-        skills: {
-          label: "Skills",
-          heading: "My tech stack",
-          sub: "What I'm confident with, and what I'm still leveling up.",
-          groups: [
-            { name: "Strong", items: ["Python", "Swift", "SwiftUI"] },
-            { name: "Proficient", items: ["HTML", "CSS", "TypeScript", "JavaScript"] },
-            { name: "Familiar", items: ["SQL", "C++", "C#", "Django", "scikit-learn", "pandas", "numpy", "matplotlib"] },
-          ],
-        },
-        faq: {
-          label: "FAQ",
-          heading: "Frequently Asked Questions",
-          items: [
-            { q: "Are you available for internships?", a: "Yes! I'm actively looking for internship opportunities, preferably in iOS development or full-stack. Remote or hybrid in Europe works great for me." },
-            { q: "What's your preferred tech for a new project?", a: "For iOS apps: Swift + SwiftUI, no question. For the web: I keep it lightweight — vanilla JS or TypeScript with a Django or Node backend." },
-            { q: "Can you work in English?", a: "Absolutely — this portfolio is proof! I work, communicate, and document in English daily." },
-            { q: "Are your projects open source?", a: "My GitHub has most of my work. RemPay and WatchCompare are personal projects; open-source contributions are coming soon." },
-            { q: "Where are you based?", a: "Wrocław, Poland. Open to remote, hybrid, or relocation for the right opportunity." },
-          ],
-        },
-        contact: {
-          label: "Contact",
-          heading: "Let's talk",
-          sub: "Have an internship, a project idea, or just want to say hi?",
-          email: "selim627eren@gmail.com",
-          links: [
-            { name: "GitHub", url: "https://github.com/LUINADLE", icon: "gh" },
-            { name: "LinkedIn", url: "https://www.linkedin.com/in/erenguneser/", icon: "li" },
-            { name: "Email", url: "mailto:selim627eren@gmail.com", icon: "em" },
-          ],
-        },
-      },
-      tr: {
-        nav: { about: "Hakkımda", projects: "Projeler", skills: "Yetenekler", faq: "SSS", contact: "İletişim" },
-        hero: {
-          greeting: "Merhaba, ben",
-          title: "Full Stack & iOS Geliştirici",
-          sub: "Swift'ten Python'a, arayüzden backend'e — gerçekten kullanılan uygulamalar yapıyorum.",
-          cta: "Çalışmalarıma Bak",
-          cta2: "İletişime Geç",
-          badge: "Staj Arıyorum",
-        },
-        about: {
-          label: "Hakkımda",
-          heading: "Tutkuyla geliştirici, gündüzleri öğrenci",
-          p1: "Polonya'daki WSB Merito Wrocław Üniversitesi'nde Yazılım Geliştirme bölümünde okuyorum — 4-5 yıldır aktif olarak yazılım üretiyorum.",
-          p2: "iOS geliştirme benim için özel bir yer tutuyor, ama işin tamamını seviyorum: arayüz tasarlamak, backend kurmak ve her şeyi birbirine bağlamak. Şu an Wrocław'da yaşıyorum ve harika bir ekiple büyümek için staj arıyorum.",
-          p3: "Kod yazmadığım zamanlarda muhtemelen bir dizi maratonu yapıyorumdur — ya da kimsenin istemediği ama herkesin aslında ihtiyaç duyduğu bir şey inşa ediyorumdur.",
-          location: "📍 Wrocław, Polonya",
-          school: "🎓 WSB Merito Wrocław — Yazılım Geliştirme",
-          status: "🟢 Aktif olarak staj arıyorum",
-        },
-        projects: {
-          label: "Projelerim",
-          heading: "Yaptıklarım",
-          sub: "Meraktan, sinirden ya da sadece eğlenmek için yaptığım kişisel projeler.",
-          items: [
-            {
-              id: "rempay",
-              name: "RemPay",
-              tag: "iOS · Swift · SwiftUI",
-              color: "var(--accent)",
-              status: "Yakında App Store'da",
-              desc: "Gelir ve giderleri gerçek zamanlı takip eden kişisel finans uygulaması. Yerel bildirimlerle akıllı ödeme hatırlatmaları gönderir; kur verisini benim yazdığım TypeScript backend üzerinden çeker.",
-              highlights: ["Gerçek zamanlı gelir/gider takibi", "Otomatik ödeme hatırlatmaları", "TS backend ile canlı kur verisi", "Yerel veri kalıcılığı"],
-            },
-            {
-              id: "watchcompare",
-              name: "WatchCompare",
-              tag: "Web · HTML · CSS · JS",
-              color: "var(--accent2)",
-              status: "Lansmana Hazır",
-              desc: "Obsesif dizi izleyiciler için (yani ben için) yapılmış bir web aracı. Birden fazla dizinin bölüm, sezon ve genel puanlarını yan yana karşılaştır. Sıfırdan vanilla JS ile yazıldı.",
-              highlights: ["Bölüm bazlı puan karşılaştırması", "Yan yana görselleştirme", "Sezon & seri toplamları", "Vanilla JS, sıfır bağımlılık"],
-            },
-          ],
-        },
-        skills: {
-          label: "Yetenekler",
-          heading: "Teknoloji yığınım",
-          sub: "Güçlü olduğum yerler ve hâlâ geliştirdiğim şeyler.",
-          groups: [
-            { name: "Güçlü", items: ["Python", "Swift", "SwiftUI"] },
-            { name: "Yetkin", items: ["HTML", "CSS", "TypeScript", "JavaScript"] },
-            { name: "Tanışıklık", items: ["SQL", "C++", "C#", "Django", "scikit-learn", "pandas", "numpy", "matplotlib"] },
-          ],
-        },
-        faq: {
-          label: "SSS",
-          heading: "Sık Sorulan Sorular",
-          items: [
-            { q: "Staj için müsait misin?", a: "Evet! Aktif olarak staj arıyorum, tercihen iOS geliştirme veya full-stack alanında. Uzaktan veya Avrupa'da hibrit çalışma benim için mükemmel." },
-            { q: "Yeni bir proje için tercih ettiğin teknoloji nedir?", a: "iOS uygulamaları için: Swift + SwiftUI, tartışmasız. Web için: hafif tutmayı seviyorum — vanilla JS veya TypeScript, Django ya da Node backend ile." },
-            { q: "İngilizce çalışabilir misin?", a: "Kesinlikle — bu portfolyo bunun kanıtı! İngilizce'yi iş, iletişim ve dokümantasyon için günlük olarak kullanıyorum." },
-            { q: "Projeler açık kaynak mı?", a: "GitHub'ımda çoğu çalışmam var. RemPay ve WatchCompare kişisel projeler; yakında açık kaynak katkıları da gelecek." },
-            { q: "Nerede yaşıyorsun?", a: "Wrocław, Polonya. Uzaktan, hibrit veya doğru fırsat için taşınmaya açığım." },
-          ],
-        },
-        contact: {
-          label: "İletişim",
-          heading: "Konuşalım",
-          sub: "Staj teklifi, proje fikri ya da sadece merhaba mı demek istiyorsun?",
-          email: "selim627eren@gmail.com",
-          links: [
-            { name: "GitHub", url: "https://github.com/LUINADLE", icon: "gh" },
-            { name: "LinkedIn", url: "https://www.linkedin.com/in/erenguneser/", icon: "li" },
-            { name: "Email", url: "mailto:selim627eren@gmail.com", icon: "em" },
-          ],
-        },
-      },
-    };
+      };
 
-    // ── ICONS ─────────────────────────────────────────────────────────────────
-    function GithubIcon({ size = 20 }) {
-      return (
-        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-      );
-    }
+      // ── ICONS ─────────────────────────────────────────────────────────────────
+      function GithubIcon({ size = 20 }) {
+        return (
+          <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+        );
+      }
 
-    function LinkedInIcon({ size = 20 }) {
-      return (
-        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
-      );
-    }
+      function LinkedInIcon({ size = 20 }) {
+        return (
+          <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg>
+        );
+      }
 
-    function EmailIcon({ size = 20 }) {
-      return (
-        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="4" width="20" height="16" rx="2"/>
-          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-        </svg>
-      );
-    }
+      function EmailIcon({ size = 20 }) {
+        return (
+          <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+        );
+      }
 
-    // ── NAV ───────────────────────────────────────────────────────────────────
-    function Nav({ t, lang, setLang }) {
-      const [scrolled, setScrolled] = useState(false);
-      useEffect(() => {
-        const fn = () => setScrolled(window.scrollY > 40);
-        window.addEventListener('scroll', fn);
-        return () => window.removeEventListener('scroll', fn);
-      }, []);
+      // ── NAV ───────────────────────────────────────────────────────────────────
+      function Nav({ t, lang, setLang }) {
+        const [scrolled, setScrolled] = useState(false);
+        useEffect(() => {
+          const fn = () => setScrolled(window.scrollY > 40);
+          window.addEventListener("scroll", fn);
+          return () => window.removeEventListener("scroll", fn);
+        }, []);
 
-      return (
-        <nav style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '0 40px', height: 64,
-          background: scrolled ? 'rgba(10,10,15,0.85)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(20px)' : 'none',
-          borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
-          transition: 'all 0.3s ease',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: '-0.5px', color: 'var(--text)' }}>
-              <span style={{ color: 'var(--accent)' }}>E</span>G
-            </span>
-          </div>
-          <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
-            {['about','projects','skills','faq','contact'].map(k => (
-              <a key={k} href={`#${k}`} style={{
-                color: 'var(--text-sub)', textDecoration: 'none', fontSize: 14, fontWeight: 500,
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => e.target.style.color = 'var(--text)'}
-              onMouseLeave={e => e.target.style.color = 'var(--text-sub)'}
-              >{t.nav[k]}</a>
-            ))}
-          </div>
-          <button
-            onClick={() => setLang(lang === 'en' ? 'tr' : 'en')}
+        return (
+          <nav
             style={{
-              background: 'var(--card)', border: '1px solid var(--border)',
-              color: 'var(--text-sub)', borderRadius: 8, padding: '6px 14px',
-              cursor: 'pointer', fontSize: 13, fontWeight: 600,
-              transition: 'all 0.2s',
-              fontFamily: 'var(--font)',
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              zIndex: 100,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "0 40px",
+              height: 64,
+              background: scrolled ? "rgba(10,10,15,0.85)" : "transparent",
+              backdropFilter: scrolled ? "blur(20px)" : "none",
+              borderBottom: scrolled
+                ? "1px solid var(--border)"
+                : "1px solid transparent",
+              transition: "all 0.3s ease",
             }}
-            onMouseEnter={e => { e.target.style.color = 'var(--text)'; e.target.style.borderColor = 'var(--border-hover)'; }}
-            onMouseLeave={e => { e.target.style.color = 'var(--text-sub)'; e.target.style.borderColor = 'var(--border)'; }}
-          >{lang === 'en' ? 'TR' : 'EN'}</button>
-        </nav>
-      );
-    }
-
-    // ── HERO ──────────────────────────────────────────────────────────────────
-    function Hero({ t }) {
-      return (
-        <section style={{
-          minHeight: '100vh',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          textAlign: 'center', padding: '120px 40px 80px',
-          position: 'relative', overflow: 'hidden',
-        }}>
-          {/* Ambient glow blobs */}
-          <div style={{
-            position: 'absolute', width: 600, height: 600,
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, oklch(72% 0.22 270 / 0.12) 0%, transparent 70%)',
-            top: '10%', left: '50%', transform: 'translateX(-50%)',
-            pointerEvents: 'none',
-          }}/>
-          <div style={{
-            position: 'absolute', width: 400, height: 400,
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, oklch(72% 0.22 200 / 0.08) 0%, transparent 70%)',
-            bottom: '20%', right: '10%',
-            pointerEvents: 'none',
-          }}/>
-
-          {/* Badge */}
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'oklch(72% 0.22 270 / 0.12)',
-            border: '1px solid oklch(72% 0.22 270 / 0.3)',
-            borderRadius: 99, padding: '6px 16px', marginBottom: 32,
-            fontSize: 13, fontWeight: 600, color: 'var(--accent)',
-          }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--accent2)', display: 'inline-block' }}></span>
-            {t.hero.badge}
-          </div>
-
-          <p style={{ color: 'var(--text-sub)', fontSize: 20, marginBottom: 8, fontWeight: 400 }}>{t.hero.greeting}</p>
-          <h1 style={{
-            fontSize: 'clamp(52px, 8vw, 96px)', fontWeight: 700,
-            letterSpacing: '-3px', lineHeight: 1.0, marginBottom: 12,
-            background: 'linear-gradient(135deg, #f0f0f5 30%, var(--text-sub) 100%)',
-            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}>Eren Güneşer</h1>
-          <h2 style={{
-            fontSize: 'clamp(18px, 2.5vw, 26px)', fontWeight: 400,
-            color: 'var(--accent)', marginBottom: 24, letterSpacing: '-0.3px',
-          }}>{t.hero.title}</h2>
-          <p style={{
-            fontSize: 18, color: 'var(--text-sub)', maxWidth: 520,
-            lineHeight: 1.65, marginBottom: 48,
-          }}>{t.hero.sub}</p>
-
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <a href="#projects" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'var(--accent)', color: '#fff',
-              padding: '14px 28px', borderRadius: 12, fontWeight: 600,
-              textDecoration: 'none', fontSize: 15,
-              boxShadow: '0 0 30px oklch(72% 0.22 270 / 0.3)',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
-            onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
-            >{t.hero.cta}</a>
-            <a href="#contact" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'var(--card)', color: 'var(--text)',
-              padding: '14px 28px', borderRadius: 12, fontWeight: 600,
-              textDecoration: 'none', fontSize: 15,
-              border: '1px solid var(--border)',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = 'var(--border-hover)'; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'var(--border)'; }}
-            >{t.hero.cta2}</a>
-          </div>
-
-          {/* Scroll hint */}
-          <div style={{
-            position: 'absolute', bottom: 40, left: '50%', transform: 'translateX(-50%)',
-            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-            color: 'var(--text-dim)', fontSize: 12,
-          }}>
-            <div style={{
-              width: 1, height: 48,
-              background: 'linear-gradient(to bottom, transparent, var(--text-dim))',
-            }}/>
-          </div>
-        </section>
-      );
-    }
-
-    // ── ABOUT ─────────────────────────────────────────────────────────────────
-    function About({ t }) {
-      return (
-        <section id="about" style={{ padding: '120px 40px', maxWidth: 1100, margin: '0 auto' }}>
-          <Label text={t.about.label} />
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', marginTop: 48 }}>
-            {/* Text */}
-            <div>
-              <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 700, letterSpacing: '-1.5px', marginBottom: 32, lineHeight: 1.15 }}>
-                {t.about.heading}
-              </h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-                {[t.about.p1, t.about.p2, t.about.p3].map((p, i) => (
-                  <p key={i} style={{ color: 'var(--text-sub)', lineHeight: 1.7, fontSize: 16 }}>{p}</p>
-                ))}
-              </div>
-              <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {[t.about.location, t.about.school, t.about.status].map((line, i) => (
-                  <p key={i} style={{ color: 'var(--text-sub)', fontSize: 14, fontWeight: 500 }}>{line}</p>
-                ))}
-              </div>
-            </div>
-
-            {/* Visual card */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {/* Avatar placeholder */}
-              <div style={{
-                width: '100%', aspectRatio: '1/1', maxWidth: 300, margin: '0 auto',
-                borderRadius: 28, overflow: 'hidden',
-                background: 'linear-gradient(135deg, var(--card) 0%, var(--bg3) 100%)',
-                border: '1px solid var(--border)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexDirection: 'column', gap: 12, position: 'relative',
-              }}>
-                <img src="uploads/LLOGO2.jpg" alt="Eren Güneşer" style={{
-                  width: '100%', height: '100%', objectFit: 'cover',
-                  display: 'block',
-                }}/>
-              </div>
-
-              {/* Social links */}
-              <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-                {[
-                  { href: 'https://github.com/LUINADLE', icon: <GithubIcon size={18}/>, label: 'GitHub' },
-                  { href: 'https://www.linkedin.com/in/erenguneser/', icon: <LinkedInIcon size={18}/>, label: 'LinkedIn' },
-                  { href: 'mailto:selim627eren@gmail.com', icon: <EmailIcon size={18}/>, label: 'Email' },
-                ].map(link => (
-                  <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
-                    style={{
-                      display: 'flex', alignItems: 'center', gap: 8,
-                      padding: '10px 16px', borderRadius: 10,
-                      background: 'var(--card)', border: '1px solid var(--border)',
-                      color: 'var(--text-sub)', textDecoration: 'none', fontSize: 13, fontWeight: 500,
-                      transition: 'all 0.2s',
-                    }}
-                    onMouseEnter={e => { e.currentTarget.style.color = 'var(--text)'; e.currentTarget.style.borderColor = 'var(--border-hover)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-sub)'; e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'none'; }}
-                  >
-                    {link.icon} {link.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    // ── PROJECTS ─────────────────────────────────────────────────────────────
-    function Projects({ t }) {
-      const [hovered, setHovered] = useState(null);
-      return (
-        <section id="projects" style={{ padding: '120px 40px', maxWidth: 1100, margin: '0 auto' }}>
-          <Label text={t.projects.label} />
-          <div style={{ marginTop: 24, marginBottom: 64 }}>
-            <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 700, letterSpacing: '-1.5px', marginBottom: 12 }}>{t.projects.heading}</h2>
-            <p style={{ color: 'var(--text-sub)', fontSize: 16 }}>{t.projects.sub}</p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(440px, 1fr))', gap: 24 }}>
-            {t.projects.items.map((proj, i) => (
-              <div key={proj.id}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <span
                 style={{
-                  background: hovered === i ? 'var(--card-hover)' : 'var(--card)',
-                  border: `1px solid ${hovered === i ? 'var(--border-hover)' : 'var(--border)'}`,
-                  borderRadius: 24, padding: 32,
-                  transition: 'all 0.25s ease',
-                  transform: hovered === i ? 'translateY(-4px)' : 'none',
-                  cursor: 'default',
-                  position: 'relative', overflow: 'hidden',
-                }}>
-                {/* Color accent top bar */}
-                <div style={{
-                  position: 'absolute', top: 0, left: 0, right: 0, height: 3,
-                  background: proj.color,
-                  opacity: hovered === i ? 1 : 0.4,
-                  transition: 'opacity 0.25s',
-                }}/>
+                  fontWeight: 700,
+                  fontSize: 18,
+                  letterSpacing: "-0.5px",
+                  color: "var(--text)",
+                }}
+              >
+                <span style={{ color: "var(--accent)" }}>E</span>G
+              </span>
+            </div>
+            <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
+              {["about", "projects", "skills", "faq", "contact"].map((k) => (
+                <a
+                  key={k}
+                  href={`#${k}`}
+                  style={{
+                    color: "var(--text-sub)",
+                    textDecoration: "none",
+                    fontSize: 14,
+                    fontWeight: 500,
+                    transition: "color 0.2s",
+                  }}
+                  onMouseEnter={(e) => (e.target.style.color = "var(--text)")}
+                  onMouseLeave={(e) =>
+                    (e.target.style.color = "var(--text-sub)")
+                  }
+                >
+                  {t.nav[k]}
+                </a>
+              ))}
+            </div>
+            <button
+              onClick={() => setLang(lang === "en" ? "tr" : "en")}
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--border)",
+                color: "var(--text-sub)",
+                borderRadius: 8,
+                padding: "6px 14px",
+                cursor: "pointer",
+                fontSize: 13,
+                fontWeight: 600,
+                transition: "all 0.2s",
+                fontFamily: "var(--font)",
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.color = "var(--text)";
+                e.target.style.borderColor = "var(--border-hover)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = "var(--text-sub)";
+                e.target.style.borderColor = "var(--border)";
+              }}
+            >
+              {lang === "en" ? "TR" : "EN"}
+            </button>
+          </nav>
+        );
+      }
 
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20, gap: 16 }}>
-                  <div>
-                    <h3 style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.5px', marginBottom: 8 }}>{proj.name}</h3>
-                    <span style={{
-                      fontSize: 12, fontWeight: 600, color: 'var(--text-dim)',
-                      fontFamily: 'monospace', letterSpacing: '0.5px',
-                    }}>{proj.tag}</span>
-                  </div>
-                  <span style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 6,
-                    padding: '6px 12px', borderRadius: 99,
-                    background: `${proj.color}20`, border: `1px solid ${proj.color}40`,
-                    color: proj.color, fontSize: 12, fontWeight: 600, whiteSpace: 'nowrap',
-                  }}>
-                    <span style={{ width: 6, height: 6, borderRadius: '50%', background: proj.color, display: 'inline-block' }}></span>
-                    {proj.status}
-                  </span>
+      // ── HERO ──────────────────────────────────────────────────────────────────
+      function Hero({ t }) {
+        return (
+          <section
+            style={{
+              minHeight: "100vh",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+              padding: "120px 40px 80px",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Ambient glow blobs */}
+            <div
+              style={{
+                position: "absolute",
+                width: 600,
+                height: 600,
+                borderRadius: "50%",
+                background:
+                  "radial-gradient(circle, oklch(72% 0.22 270 / 0.12) 0%, transparent 70%)",
+                top: "10%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                pointerEvents: "none",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                width: 400,
+                height: 400,
+                borderRadius: "50%",
+                background:
+                  "radial-gradient(circle, oklch(72% 0.22 200 / 0.08) 0%, transparent 70%)",
+                bottom: "20%",
+                right: "10%",
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* Badge */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: "oklch(72% 0.22 270 / 0.12)",
+                border: "1px solid oklch(72% 0.22 270 / 0.3)",
+                borderRadius: 99,
+                padding: "6px 16px",
+                marginBottom: 32,
+                fontSize: 13,
+                fontWeight: 600,
+                color: "var(--accent)",
+              }}
+            >
+              <span
+                style={{
+                  width: 7,
+                  height: 7,
+                  borderRadius: "50%",
+                  background: "var(--accent2)",
+                  display: "inline-block",
+                }}
+              ></span>
+              {t.hero.badge}
+            </div>
+
+            <p
+              style={{
+                color: "var(--text-sub)",
+                fontSize: 20,
+                marginBottom: 8,
+                fontWeight: 400,
+              }}
+            >
+              {t.hero.greeting}
+            </p>
+            <h1
+              style={{
+                fontSize: "clamp(52px, 8vw, 96px)",
+                fontWeight: 700,
+                letterSpacing: "-3px",
+                lineHeight: 1.0,
+                marginBottom: 12,
+                background:
+                  "linear-gradient(135deg, #f0f0f5 30%, var(--text-sub) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Eren Güneşer
+            </h1>
+            <h2
+              style={{
+                fontSize: "clamp(18px, 2.5vw, 26px)",
+                fontWeight: 400,
+                color: "var(--accent)",
+                marginBottom: 24,
+                letterSpacing: "-0.3px",
+              }}
+            >
+              {t.hero.title}
+            </h2>
+            <p
+              style={{
+                fontSize: 18,
+                color: "var(--text-sub)",
+                maxWidth: 520,
+                lineHeight: 1.65,
+                marginBottom: 48,
+              }}
+            >
+              {t.hero.sub}
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                gap: 16,
+                flexWrap: "wrap",
+                justifyContent: "center",
+              }}
+            >
+              <a
+                href="#projects"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "var(--accent)",
+                  color: "#fff",
+                  padding: "14px 28px",
+                  borderRadius: 12,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  fontSize: 15,
+                  boxShadow: "0 0 30px oklch(72% 0.22 270 / 0.3)",
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "translateY(-2px)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "translateY(0)")
+                }
+              >
+                {t.hero.cta}
+              </a>
+              <a
+                href="#contact"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "var(--card)",
+                  color: "var(--text)",
+                  padding: "14px 28px",
+                  borderRadius: 12,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  fontSize: 15,
+                  border: "1px solid var(--border)",
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.borderColor = "var(--border-hover)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.borderColor = "var(--border)";
+                }}
+              >
+                {t.hero.cta2}
+              </a>
+            </div>
+
+            {/* Scroll hint */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 40,
+                left: "50%",
+                transform: "translateX(-50%)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 8,
+                color: "var(--text-dim)",
+                fontSize: 12,
+              }}
+            >
+              <div
+                style={{
+                  width: 1,
+                  height: 48,
+                  background:
+                    "linear-gradient(to bottom, transparent, var(--text-dim))",
+                }}
+              />
+            </div>
+          </section>
+        );
+      }
+
+      // ── ABOUT ─────────────────────────────────────────────────────────────────
+      function About({ t }) {
+        return (
+          <section
+            id="about"
+            style={{ padding: "120px 40px", maxWidth: 1100, margin: "0 auto" }}
+          >
+            <Label text={t.about.label} />
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 80,
+                alignItems: "center",
+                marginTop: 48,
+              }}
+            >
+              {/* Text */}
+              <div>
+                <h2
+                  style={{
+                    fontSize: "clamp(28px, 3vw, 42px)",
+                    fontWeight: 700,
+                    letterSpacing: "-1.5px",
+                    marginBottom: 32,
+                    lineHeight: 1.15,
+                  }}
+                >
+                  {t.about.heading}
+                </h2>
+                <div
+                  style={{ display: "flex", flexDirection: "column", gap: 18 }}
+                >
+                  {[t.about.p1, t.about.p2, t.about.p3].map((p, i) => (
+                    <p
+                      key={i}
+                      style={{
+                        color: "var(--text-sub)",
+                        lineHeight: 1.7,
+                        fontSize: 16,
+                      }}
+                    >
+                      {p}
+                    </p>
+                  ))}
+                </div>
+                <div
+                  style={{
+                    marginTop: 32,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 10,
+                  }}
+                >
+                  {[t.about.location, t.about.school, t.about.status].map(
+                    (line, i) => (
+                      <p
+                        key={i}
+                        style={{
+                          color: "var(--text-sub)",
+                          fontSize: 14,
+                          fontWeight: 500,
+                        }}
+                      >
+                        {line}
+                      </p>
+                    ),
+                  )}
+                </div>
+              </div>
+
+              {/* Visual card */}
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: 16 }}
+              >
+                {/* Avatar placeholder */}
+                <div
+                  style={{
+                    width: "100%",
+                    aspectRatio: "1/1",
+                    maxWidth: 300,
+                    margin: "0 auto",
+                    borderRadius: 28,
+                    overflow: "hidden",
+                    background:
+                      "linear-gradient(135deg, var(--card) 0%, var(--bg3) 100%)",
+                    border: "1px solid var(--border)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                    gap: 12,
+                    position: "relative",
+                  }}
+                >
+                  <img
+                    src="uploads/LLOGO2.jpg"
+                    alt="Eren Güneşer"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                    }}
+                  />
                 </div>
 
-                <p style={{ color: 'var(--text-sub)', fontSize: 15, lineHeight: 1.65, marginBottom: 24 }}>{proj.desc}</p>
-
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                  {proj.highlights.map(h => (
-                    <span key={h} style={{
-                      padding: '5px 12px', borderRadius: 8,
-                      background: 'var(--bg3)', border: '1px solid var(--border)',
-                      color: 'var(--text-sub)', fontSize: 12, fontWeight: 500,
-                    }}>{h}</span>
+                {/* Social links */}
+                <div
+                  style={{ display: "flex", gap: 12, justifyContent: "center" }}
+                >
+                  {[
+                    {
+                      href: "https://github.com/LUINADLE",
+                      icon: <GithubIcon size={18} />,
+                      label: "GitHub",
+                    },
+                    {
+                      href: "https://www.linkedin.com/in/erenguneser/",
+                      icon: <LinkedInIcon size={18} />,
+                      label: "LinkedIn",
+                    },
+                    {
+                      href: "mailto:selim627eren@gmail.com",
+                      icon: <EmailIcon size={18} />,
+                      label: "Email",
+                    },
+                  ].map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 8,
+                        padding: "10px 16px",
+                        borderRadius: 10,
+                        background: "var(--card)",
+                        border: "1px solid var(--border)",
+                        color: "var(--text-sub)",
+                        textDecoration: "none",
+                        fontSize: 13,
+                        fontWeight: 500,
+                        transition: "all 0.2s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "var(--text)";
+                        e.currentTarget.style.borderColor =
+                          "var(--border-hover)";
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "var(--text-sub)";
+                        e.currentTarget.style.borderColor = "var(--border)";
+                        e.currentTarget.style.transform = "none";
+                      }}
+                    >
+                      {link.icon} {link.label}
+                    </a>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-      );
-    }
+            </div>
+          </section>
+        );
+      }
 
-    // ── SKILLS ───────────────────────────────────────────────────────────────
-    const SKILL_COLORS = {
-      Python: '#3572A5', Swift: '#F05138', SwiftUI: '#006CE0',
-      JavaScript: '#F7DF1E', TypeScript: '#3178C6', HTML: '#E34F26',
-      CSS: '#264DE4', SQL: '#C27D38', 'C++': '#00599C', 'C#': '#239120',
-      Django: '#092E20', 'scikit-learn': '#F89939', pandas: '#150458',
-      numpy: '#4DABCF', matplotlib: '#11557C',
-    };
-
-    function Skills({ t }) {
-      return (
-        <section id="skills" style={{ padding: '120px 40px', background: 'var(--bg2)' }}>
-          <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-            <Label text={t.skills.label} />
+      // ── PROJECTS ─────────────────────────────────────────────────────────────
+      function Projects({ t }) {
+        const [hovered, setHovered] = useState(null);
+        return (
+          <section
+            id="projects"
+            style={{ padding: "120px 40px", maxWidth: 1100, margin: "0 auto" }}
+          >
+            <Label text={t.projects.label} />
             <div style={{ marginTop: 24, marginBottom: 64 }}>
-              <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 700, letterSpacing: '-1.5px', marginBottom: 12 }}>{t.skills.heading}</h2>
-              <p style={{ color: 'var(--text-sub)', fontSize: 16 }}>{t.skills.sub}</p>
+              <h2
+                style={{
+                  fontSize: "clamp(28px, 3vw, 42px)",
+                  fontWeight: 700,
+                  letterSpacing: "-1.5px",
+                  marginBottom: 12,
+                }}
+              >
+                {t.projects.heading}
+              </h2>
+              <p style={{ color: "var(--text-sub)", fontSize: 16 }}>
+                {t.projects.sub}
+              </p>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
-              {t.skills.groups.map((group, gi) => (
-                <div key={group.name}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
-                    <span style={{ color: 'var(--text-sub)', fontSize: 13, fontWeight: 600, fontFamily: 'monospace', letterSpacing: '1px' }}>{group.name.toUpperCase()}</span>
-                    <div style={{ flex: 1, height: 1, background: 'var(--border)' }}/>
-                  </div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-                    {group.items.map(skill => (
-                      <div key={skill} style={{
-                        display: 'flex', alignItems: 'center', gap: 10,
-                        padding: '10px 18px', borderRadius: 12,
-                        background: 'var(--card)', border: '1px solid var(--border)',
-                        transition: 'all 0.2s',
-                      }}
-                      onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-hover)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                      onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.transform = 'none'; }}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(440px, 1fr))",
+                gap: 24,
+              }}
+            >
+              {t.projects.items.map((proj, i) => (
+                <div
+                  key={proj.id}
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
+                  style={{
+                    background:
+                      hovered === i ? "var(--card-hover)" : "var(--card)",
+                    border: `1px solid ${hovered === i ? "var(--border-hover)" : "var(--border)"}`,
+                    borderRadius: 24,
+                    padding: 32,
+                    transition: "all 0.25s ease",
+                    transform: hovered === i ? "translateY(-4px)" : "none",
+                    cursor: "default",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  {/* Color accent top bar */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: 3,
+                      background: proj.color,
+                      opacity: hovered === i ? 1 : 0.4,
+                      transition: "opacity 0.25s",
+                    }}
+                  />
+
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      marginBottom: 20,
+                      gap: 16,
+                    }}
+                  >
+                    <div>
+                      <h3
+                        style={{
+                          fontSize: 24,
+                          fontWeight: 700,
+                          letterSpacing: "-0.5px",
+                          marginBottom: 8,
+                        }}
                       >
-                        <span style={{
-                          width: 10, height: 10, borderRadius: 3,
-                          background: SKILL_COLORS[skill] || 'var(--accent)',
-                          display: 'inline-block', flexShrink: 0,
-                        }}/>
-                        <span style={{ fontSize: 14, fontWeight: 500 }}>{skill}</span>
-                      </div>
+                        {proj.name}
+                      </h3>
+                      <span
+                        style={{
+                          fontSize: 12,
+                          fontWeight: 600,
+                          color: "var(--text-dim)",
+                          fontFamily: "monospace",
+                          letterSpacing: "0.5px",
+                        }}
+                      >
+                        {proj.tag}
+                      </span>
+                    </div>
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 6,
+                        padding: "6px 12px",
+                        borderRadius: 99,
+                        background: `${proj.color}20`,
+                        border: `1px solid ${proj.color}40`,
+                        color: proj.color,
+                        fontSize: 12,
+                        fontWeight: 600,
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: 6,
+                          height: 6,
+                          borderRadius: "50%",
+                          background: proj.color,
+                          display: "inline-block",
+                        }}
+                      ></span>
+                      {proj.status}
+                    </span>
+                  </div>
+
+                  <p
+                    style={{
+                      color: "var(--text-sub)",
+                      fontSize: 15,
+                      lineHeight: 1.65,
+                      marginBottom: 24,
+                    }}
+                  >
+                    {proj.desc}
+                  </p>
+
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                    {proj.highlights.map((h) => (
+                      <span
+                        key={h}
+                        style={{
+                          padding: "5px 12px",
+                          borderRadius: 8,
+                          background: "var(--bg3)",
+                          border: "1px solid var(--border)",
+                          color: "var(--text-sub)",
+                          fontSize: 12,
+                          fontWeight: 500,
+                        }}
+                      >
+                        {h}
+                      </span>
                     ))}
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-      );
-    }
+          </section>
+        );
+      }
 
-    // ── FAQ ──────────────────────────────────────────────────────────────────
-    function FAQ({ t }) {
-      const [open, setOpen] = useState(null);
-      return (
-        <section id="faq" style={{ padding: '120px 40px', maxWidth: 780, margin: '0 auto' }}>
-          <Label text={t.faq.label} />
-          <h2 style={{ fontSize: 'clamp(28px, 3vw, 42px)', fontWeight: 700, letterSpacing: '-1.5px', marginTop: 24, marginBottom: 56 }}>
-            {t.faq.heading}
-          </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-            {t.faq.items.map((item, i) => (
-              <div key={i} style={{
-                borderTop: '1px solid var(--border)',
-                ...(i === t.faq.items.length - 1 ? { borderBottom: '1px solid var(--border)' } : {}),
-              }}>
-                <button
-                  onClick={() => setOpen(open === i ? null : i)}
+      // ── SKILLS ───────────────────────────────────────────────────────────────
+      const SKILL_ICONS = {
+        Python: "https://cdn.simpleicons.org/python",
+        Swift: "https://cdn.simpleicons.org/swift",
+        SwiftUI: null,
+        HTML: "https://cdn.simpleicons.org/html5",
+        CSS: "https://cdn.simpleicons.org/css3",
+        TypeScript: "https://cdn.simpleicons.org/typescript",
+        JavaScript: "https://cdn.simpleicons.org/javascript",
+        SQL: "https://cdn.simpleicons.org/postgresql",
+        "C++": "https://cdn.simpleicons.org/cplusplus",
+        "C#": "https://cdn.simpleicons.org/csharp",
+        Django: "https://cdn.simpleicons.org/django/ffffff",
+        "scikit-learn": "https://cdn.simpleicons.org/scikitlearn",
+        pandas: "https://cdn.simpleicons.org/pandas/ffffff",
+        numpy: "https://cdn.simpleicons.org/numpy/4DABCF",
+        matplotlib: null,
+      };
+
+      function SkillIcon({ skill, size = 18 }) {
+        if (skill === "SwiftUI") {
+          return (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 18 18"
+              style={{ flexShrink: 0, display: "block" }}
+            >
+              <rect width="18" height="18" rx="4" fill="#006CE0" />
+              <path
+                d="M13.2 7.8C13.5 5.8 12 4 10 3.6c.6.6.9 1.5.7 2.4L9.2 8.5 8 7.3C6.8 6.1 7 4.5 8 3.5 5.7 4.2 4.5 6.6 5.3 8.9c.3.8.8 1.5 1.6 2L10 12.2c.3.2.7.2 1 0l.6-.4c.9-.5 1.4-1.4 1-2.4l-.5-.5.6-1.1z"
+                fill="#fff"
+              />
+            </svg>
+          );
+        }
+        if (skill === "matplotlib") {
+          return (
+            <svg
+              width={size}
+              height={size}
+              viewBox="0 0 20 20"
+              fill="none"
+              style={{ flexShrink: 0, display: "block" }}
+            >
+              <polyline
+                points="2,16 6,9 10,13 14,5 18,9"
+                stroke="#4C9BE8"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="6" cy="9" r="1.5" fill="#E07B3A" />
+              <circle cx="10" cy="13" r="1.5" fill="#E07B3A" />
+              <circle cx="14" cy="5" r="1.5" fill="#E07B3A" />
+            </svg>
+          );
+        }
+        const src = SKILL_ICONS[skill];
+        if (!src) return null;
+        return (
+          <img
+            src={src}
+            alt={skill}
+            width={size}
+            height={size}
+            style={{ flexShrink: 0, display: "block" }}
+          />
+        );
+      }
+
+      function Skills({ t }) {
+        return (
+          <section
+            id="skills"
+            style={{ padding: "120px 40px", background: "var(--bg2)" }}
+          >
+            <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+              <Label text={t.skills.label} />
+              <div style={{ marginTop: 24, marginBottom: 64 }}>
+                <h2
                   style={{
-                    width: '100%', display: 'flex', alignItems: 'center',
-                    justifyContent: 'space-between', gap: 16,
-                    padding: '22px 0', background: 'none', border: 'none',
-                    color: 'var(--text)', cursor: 'pointer', textAlign: 'left',
-                    fontSize: 16, fontWeight: 600, fontFamily: 'var(--font)',
+                    fontSize: "clamp(28px, 3vw, 42px)",
+                    fontWeight: 700,
+                    letterSpacing: "-1.5px",
+                    marginBottom: 12,
                   }}
                 >
-                  <span>{item.q}</span>
-                  <span style={{
-                    width: 28, height: 28, borderRadius: '50%',
-                    background: open === i ? 'var(--accent)' : 'var(--bg3)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 18, flexShrink: 0, transition: 'all 0.2s',
-                    color: open === i ? '#fff' : 'var(--text-sub)',
-                    lineHeight: 1,
-                  }}>
-                    {open === i ? '−' : '+'}
-                  </span>
-                </button>
-                <div style={{
-                  overflow: 'hidden', maxHeight: open === i ? 200 : 0,
-                  transition: 'max-height 0.3s ease',
-                }}>
-                  <p style={{ color: 'var(--text-sub)', fontSize: 15, lineHeight: 1.7, paddingBottom: 22 }}>{item.a}</p>
-                </div>
+                  {t.skills.heading}
+                </h2>
+                <p style={{ color: "var(--text-sub)", fontSize: 16 }}>
+                  {t.skills.sub}
+                </p>
               </div>
-            ))}
-          </div>
-        </section>
-      );
-    }
 
-    // ── CONTACT ──────────────────────────────────────────────────────────────
-    function Contact({ t }) {
-      return (
-        <section id="contact" style={{
-          padding: '120px 40px', background: 'var(--bg2)',
-          borderTop: '1px solid var(--border)',
-        }}>
-          <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
-            <Label text={t.contact.label} center />
-            <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 700, letterSpacing: '-2px', marginTop: 24, marginBottom: 16 }}>
-              {t.contact.heading}
-            </h2>
-            <p style={{ color: 'var(--text-sub)', fontSize: 18, lineHeight: 1.65, marginBottom: 48 }}>
-              {t.contact.sub}
-            </p>
-
-            {/* Email pill */}
-            <a href={`mailto:${t.contact.email}`} style={{
-              display: 'inline-flex', alignItems: 'center', gap: 10,
-              padding: '16px 28px', borderRadius: 16,
-              background: 'var(--card)', border: '1px solid var(--border)',
-              color: 'var(--text)', textDecoration: 'none',
-              fontSize: 16, fontWeight: 600, marginBottom: 48,
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.boxShadow = '0 0 24px oklch(72% 0.22 270 / 0.2)'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = 'none'; }}
-            >
-              <EmailIcon size={18}/> {t.contact.email}
-            </a>
-
-            {/* Social links row */}
-            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              {t.contact.links.map(link => {
-                const Icon = link.icon === 'gh' ? GithubIcon : link.icon === 'li' ? LinkedInIcon : EmailIcon;
-                return (
-                  <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer"
-                    style={{
-                      display: 'flex', alignItems: 'center', gap: 10,
-                      padding: '14px 24px', borderRadius: 14,
-                      background: 'var(--card)', border: '1px solid var(--border)',
-                      color: 'var(--text-sub)', textDecoration: 'none',
-                      fontSize: 14, fontWeight: 600, transition: 'all 0.2s',
-                    }}
-                    onMouseEnter={e => { e.currentTarget.style.color = 'var(--text)'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.borderColor = 'var(--border-hover)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-sub)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.borderColor = 'var(--border)'; }}
-                  >
-                    <Icon size={18}/> {link.name}
-                  </a>
-                );
-              })}
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: 48 }}
+              >
+                {t.skills.groups.map((group, gi) => (
+                  <div key={group.name}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 16,
+                        marginBottom: 20,
+                      }}
+                    >
+                      <span
+                        style={{
+                          color: "var(--text-sub)",
+                          fontSize: 13,
+                          fontWeight: 600,
+                          fontFamily: "monospace",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {group.name.toUpperCase()}
+                      </span>
+                      <div
+                        style={{
+                          flex: 1,
+                          height: 1,
+                          background: "var(--border)",
+                        }}
+                      />
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+                      {group.items.map((skill) => (
+                        <div
+                          key={skill}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 10,
+                            padding: "10px 18px",
+                            borderRadius: 12,
+                            background: "var(--card)",
+                            border: "1px solid var(--border)",
+                            transition: "all 0.2s",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.borderColor =
+                              "var(--border-hover)";
+                            e.currentTarget.style.transform =
+                              "translateY(-2px)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.borderColor = "var(--border)";
+                            e.currentTarget.style.transform = "none";
+                          }}
+                        >
+                          <SkillIcon skill={skill} size={18} />
+                          <span style={{ fontSize: 14, fontWeight: 500 }}>
+                            {skill}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      );
-    }
+          </section>
+        );
+      }
 
-    // ── FOOTER ───────────────────────────────────────────────────────────────
-    function Footer({ lang }) {
-      return (
-        <footer style={{
-          padding: '32px 40px', borderTop: '1px solid var(--border)',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          color: 'var(--text-dim)', fontSize: 13,
-        }}>
-          <span>© 2025 Eren Güneşer</span>
-          <span style={{ fontFamily: 'monospace', fontSize: 12 }}>
-            {lang === 'en' ? 'Built with ♥ in Wrocław' : "Wrocław'dan ♥ ile yapıldı"}
-          </span>
-        </footer>
-      );
-    }
-
-    // ── LABEL ─────────────────────────────────────────────────────────────────
-    function Label({ text, center }) {
-      return (
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 10,
-          ...(center ? { justifyContent: 'center', width: '100%' } : {}),
-        }}>
-          <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)' }}/>
-          <span style={{ color: 'var(--accent)', fontSize: 13, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', fontFamily: 'monospace' }}>{text}</span>
-        </div>
-      );
-    }
-
-    // ── SIMPLE TWEAKS PANEL ──────────────────────────────────────────────────
-    function SimpleTweaksPanel({ accentHue, onAccentChange, onClose }) {
-      const presets = [
-        { label: 'Purple', hue: 270 },
-        { label: 'Blue', hue: 220 },
-        { label: 'Cyan', hue: 190 },
-        { label: 'Green', hue: 140 },
-        { label: 'Orange', hue: 40 },
-        { label: 'Pink', hue: 330 },
-      ];
-      return (
-        <div style={{
-          position: 'fixed', bottom: 24, right: 24, zIndex: 9999,
-          background: '#1c1c26', border: '1px solid rgba(255,255,255,0.1)',
-          borderRadius: 18, padding: 24, width: 260,
-          boxShadow: '0 24px 64px rgba(0,0,0,0.6)',
-          fontFamily: 'var(--font)',
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-            <span style={{ fontWeight: 700, fontSize: 14, color: '#f0f0f5' }}>Tweaks</span>
-            <button onClick={onClose} style={{
-              background: 'none', border: 'none', color: '#8888aa',
-              cursor: 'pointer', fontSize: 18, lineHeight: 1, padding: 4,
-            }}>×</button>
-          </div>
-
-          <div style={{ marginBottom: 16 }}>
-            <p style={{ fontSize: 12, color: '#8888aa', marginBottom: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.8px' }}>Accent Color</p>
-            <input type="range" min={0} max={360} step={1} value={accentHue}
-              onChange={e => onAccentChange(Number(e.target.value))}
-              style={{ width: '100%', accentColor: `oklch(72% 0.22 ${accentHue})` }}
-            />
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
-              {presets.map(p => (
-                <button key={p.hue} onClick={() => onAccentChange(p.hue)}
+      // ── FAQ ──────────────────────────────────────────────────────────────────
+      function FAQ({ t }) {
+        const [open, setOpen] = useState(null);
+        return (
+          <section
+            id="faq"
+            style={{ padding: "120px 40px", maxWidth: 780, margin: "0 auto" }}
+          >
+            <Label text={t.faq.label} />
+            <h2
+              style={{
+                fontSize: "clamp(28px, 3vw, 42px)",
+                fontWeight: 700,
+                letterSpacing: "-1.5px",
+                marginTop: 24,
+                marginBottom: 56,
+              }}
+            >
+              {t.faq.heading}
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+              {t.faq.items.map((item, i) => (
+                <div
+                  key={i}
                   style={{
-                    width: 28, height: 28, borderRadius: '50%', border: accentHue === p.hue ? '2px solid white' : '2px solid transparent',
-                    background: `oklch(72% 0.22 ${p.hue})`, cursor: 'pointer',
-                    transition: 'transform 0.15s',
+                    borderTop: "1px solid var(--border)",
+                    ...(i === t.faq.items.length - 1
+                      ? { borderBottom: "1px solid var(--border)" }
+                      : {}),
                   }}
-                  title={p.label}
-                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
-                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                />
+                >
+                  <button
+                    onClick={() => setOpen(open === i ? null : i)}
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: 16,
+                      padding: "22px 0",
+                      background: "none",
+                      border: "none",
+                      color: "var(--text)",
+                      cursor: "pointer",
+                      textAlign: "left",
+                      fontSize: 16,
+                      fontWeight: 600,
+                      fontFamily: "var(--font)",
+                    }}
+                  >
+                    <span>{item.q}</span>
+                    <span
+                      style={{
+                        width: 28,
+                        height: 28,
+                        borderRadius: "50%",
+                        background: open === i ? "var(--accent)" : "var(--bg3)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: 18,
+                        flexShrink: 0,
+                        transition: "all 0.2s",
+                        color: open === i ? "#fff" : "var(--text-sub)",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {open === i ? "−" : "+"}
+                    </span>
+                  </button>
+                  <div
+                    style={{
+                      overflow: "hidden",
+                      maxHeight: open === i ? 200 : 0,
+                      transition: "max-height 0.3s ease",
+                    }}
+                  >
+                    <p
+                      style={{
+                        color: "var(--text-sub)",
+                        fontSize: 15,
+                        lineHeight: 1.7,
+                        paddingBottom: 22,
+                      }}
+                    >
+                      {item.a}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
-        </div>
-      );
-    }
+          </section>
+        );
+      }
 
-    // ── APP ──────────────────────────────────────────────────────────────────
-    function App() {
-      const [lang, setLang] = useState(TWEAK_DEFAULTS.lang || 'en');
-      const [accentHue, setAccentHue] = useState(TWEAK_DEFAULTS.accentHue);
-      const t = copy[lang];
+      // ── CONTACT ──────────────────────────────────────────────────────────────
+      function Contact({ t }) {
+        return (
+          <section
+            id="contact"
+            style={{
+              padding: "120px 40px",
+              background: "var(--bg2)",
+              borderTop: "1px solid var(--border)",
+            }}
+          >
+            <div
+              style={{ maxWidth: 700, margin: "0 auto", textAlign: "center" }}
+            >
+              <Label text={t.contact.label} center />
+              <h2
+                style={{
+                  fontSize: "clamp(36px, 5vw, 64px)",
+                  fontWeight: 700,
+                  letterSpacing: "-2px",
+                  marginTop: 24,
+                  marginBottom: 16,
+                }}
+              >
+                {t.contact.heading}
+              </h2>
+              <p
+                style={{
+                  color: "var(--text-sub)",
+                  fontSize: 18,
+                  lineHeight: 1.65,
+                  marginBottom: 48,
+                }}
+              >
+                {t.contact.sub}
+              </p>
 
-      const applyAccent = (hue) => {
-        document.documentElement.style.setProperty('--accent', `oklch(72% 0.22 ${hue})`);
-        document.documentElement.style.setProperty('--accent2', `oklch(72% 0.22 ${(hue + 70) % 360})`);
-        document.documentElement.style.setProperty('--accent3', `oklch(72% 0.22 ${(hue + 140) % 360})`);
-        document.documentElement.style.setProperty('--accent-glow', `oklch(72% 0.22 ${hue} / 0.18)`);
-      };
+              {/* Email pill */}
+              <a
+                href={`mailto:${t.contact.email}`}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 10,
+                  padding: "16px 28px",
+                  borderRadius: 16,
+                  background: "var(--card)",
+                  border: "1px solid var(--border)",
+                  color: "var(--text)",
+                  textDecoration: "none",
+                  fontSize: 16,
+                  fontWeight: 600,
+                  marginBottom: 48,
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "var(--accent)";
+                  e.currentTarget.style.boxShadow =
+                    "0 0 24px oklch(72% 0.22 270 / 0.2)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--border)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                <EmailIcon size={18} /> {t.contact.email}
+              </a>
 
-      useEffect(() => { applyAccent(accentHue); }, []);
+              {/* Social links row */}
+              <div
+                style={{
+                  display: "flex",
+                  gap: 16,
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                {t.contact.links.map((link) => {
+                  const Icon =
+                    link.icon === "gh"
+                      ? GithubIcon
+                      : link.icon === "li"
+                        ? LinkedInIcon
+                        : EmailIcon;
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 10,
+                        padding: "14px 24px",
+                        borderRadius: 14,
+                        background: "var(--card)",
+                        border: "1px solid var(--border)",
+                        color: "var(--text-sub)",
+                        textDecoration: "none",
+                        fontSize: 14,
+                        fontWeight: 600,
+                        transition: "all 0.2s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "var(--text)";
+                        e.currentTarget.style.transform = "translateY(-3px)";
+                        e.currentTarget.style.borderColor =
+                          "var(--border-hover)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "var(--text-sub)";
+                        e.currentTarget.style.transform = "none";
+                        e.currentTarget.style.borderColor = "var(--border)";
+                      }}
+                    >
+                      <Icon size={18} /> {link.name}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        );
+      }
 
-      // Tweaks panel wiring
-      useEffect(() => {
-        const handler = (e) => {
-          if (e.data?.type === '__activate_edit_mode') setTweaksPanelVisible(true);
-          if (e.data?.type === '__deactivate_edit_mode') setTweaksPanelVisible(false);
-        };
-        window.addEventListener('message', handler);
-        window.parent.postMessage({ type: '__edit_mode_available' }, '*');
-        return () => window.removeEventListener('message', handler);
-      }, []);
+      // ── FOOTER ───────────────────────────────────────────────────────────────
+      function Footer({ lang }) {
+        return (
+          <footer
+            style={{
+              padding: "32px 40px",
+              borderTop: "1px solid var(--border)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              color: "var(--text-dim)",
+              fontSize: 13,
+            }}
+          >
+            <span>© 2025 Eren Güneşer</span>
+            <span style={{ fontFamily: "monospace", fontSize: 12 }}>
+              {lang === "en"
+                ? "Built with ♥ in Wrocław"
+                : "Wrocław'dan ♥ ile yapıldı"}
+            </span>
+          </footer>
+        );
+      }
 
-      const [tweaksPanelVisible, setTweaksPanelVisible] = useState(false);
-
-      const handleAccentChange = (v) => {
-        setAccentHue(v);
-        applyAccent(v);
-        window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { accentHue: v } }, '*');
-      };
-
-      return (
-        <>
-          <Nav t={t} lang={lang} setLang={setLang}/>
-          <Hero t={t}/>
-          <About t={t}/>
-          <Projects t={t}/>
-          <Skills t={t}/>
-          <FAQ t={t}/>
-          <Contact t={t}/>
-          <Footer lang={lang}/>
-          {tweaksPanelVisible && (
-            <SimpleTweaksPanel
-              accentHue={accentHue}
-              onAccentChange={handleAccentChange}
-              onClose={() => {
-                setTweaksPanelVisible(false);
-                window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+      // ── LABEL ─────────────────────────────────────────────────────────────────
+      function Label({ text, center }) {
+        return (
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              ...(center ? { justifyContent: "center", width: "100%" } : {}),
+            }}
+          >
+            <div
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "var(--accent)",
               }}
             />
-          )}
-        </>
-      );
-    }
+            <span
+              style={{
+                color: "var(--accent)",
+                fontSize: 13,
+                fontWeight: 700,
+                letterSpacing: "1.5px",
+                textTransform: "uppercase",
+                fontFamily: "monospace",
+              }}
+            >
+              {text}
+            </span>
+          </div>
+        );
+      }
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
-  </script>
-</body>
+      // ── SIMPLE TWEAKS PANEL ──────────────────────────────────────────────────
+      function SimpleTweaksPanel({ accentHue, onAccentChange, onClose }) {
+        const presets = [
+          { label: "Purple", hue: 270 },
+          { label: "Blue", hue: 220 },
+          { label: "Cyan", hue: 190 },
+          { label: "Green", hue: 140 },
+          { label: "Orange", hue: 40 },
+          { label: "Pink", hue: 330 },
+        ];
+        return (
+          <div
+            style={{
+              position: "fixed",
+              bottom: 24,
+              right: 24,
+              zIndex: 9999,
+              background: "#1c1c26",
+              border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: 18,
+              padding: 24,
+              width: 260,
+              boxShadow: "0 24px 64px rgba(0,0,0,0.6)",
+              fontFamily: "var(--font)",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: 20,
+              }}
+            >
+              <span style={{ fontWeight: 700, fontSize: 14, color: "#f0f0f5" }}>
+                Tweaks
+              </span>
+              <button
+                onClick={onClose}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "#8888aa",
+                  cursor: "pointer",
+                  fontSize: 18,
+                  lineHeight: 1,
+                  padding: 4,
+                }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div style={{ marginBottom: 16 }}>
+              <p
+                style={{
+                  fontSize: 12,
+                  color: "#8888aa",
+                  marginBottom: 10,
+                  fontWeight: 600,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.8px",
+                }}
+              >
+                Accent Color
+              </p>
+              <input
+                type="range"
+                min={0}
+                max={360}
+                step={1}
+                value={accentHue}
+                onChange={(e) => onAccentChange(Number(e.target.value))}
+                style={{
+                  width: "100%",
+                  accentColor: `oklch(72% 0.22 ${accentHue})`,
+                }}
+              />
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 8,
+                  marginTop: 12,
+                }}
+              >
+                {presets.map((p) => (
+                  <button
+                    key={p.hue}
+                    onClick={() => onAccentChange(p.hue)}
+                    style={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: "50%",
+                      border:
+                        accentHue === p.hue
+                          ? "2px solid white"
+                          : "2px solid transparent",
+                      background: `oklch(72% 0.22 ${p.hue})`,
+                      cursor: "pointer",
+                      transition: "transform 0.15s",
+                    }}
+                    title={p.label}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.transform = "scale(1.15)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.transform = "scale(1)")
+                    }
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      // ── APP ──────────────────────────────────────────────────────────────────
+      function App() {
+        const [lang, setLang] = useState(TWEAK_DEFAULTS.lang || "en");
+        const [accentHue, setAccentHue] = useState(TWEAK_DEFAULTS.accentHue);
+        const t = copy[lang];
+
+        const applyAccent = (hue) => {
+          document.documentElement.style.setProperty(
+            "--accent",
+            `oklch(72% 0.22 ${hue})`,
+          );
+          document.documentElement.style.setProperty(
+            "--accent2",
+            `oklch(72% 0.22 ${(hue + 70) % 360})`,
+          );
+          document.documentElement.style.setProperty(
+            "--accent3",
+            `oklch(72% 0.22 ${(hue + 140) % 360})`,
+          );
+          document.documentElement.style.setProperty(
+            "--accent-glow",
+            `oklch(72% 0.22 ${hue} / 0.18)`,
+          );
+        };
+
+        useEffect(() => {
+          applyAccent(accentHue);
+        }, []);
+
+        // Tweaks panel wiring
+        useEffect(() => {
+          const handler = (e) => {
+            if (e.data?.type === "__activate_edit_mode")
+              setTweaksPanelVisible(true);
+            if (e.data?.type === "__deactivate_edit_mode")
+              setTweaksPanelVisible(false);
+          };
+          window.addEventListener("message", handler);
+          window.parent.postMessage({ type: "__edit_mode_available" }, "*");
+          return () => window.removeEventListener("message", handler);
+        }, []);
+
+        const [tweaksPanelVisible, setTweaksPanelVisible] = useState(false);
+
+        const handleAccentChange = (v) => {
+          setAccentHue(v);
+          applyAccent(v);
+          window.parent.postMessage(
+            { type: "__edit_mode_set_keys", edits: { accentHue: v } },
+            "*",
+          );
+        };
+
+        return (
+          <>
+            <Nav t={t} lang={lang} setLang={setLang} />
+            <Hero t={t} />
+            <About t={t} />
+            <Projects t={t} />
+            <Skills t={t} />
+            <FAQ t={t} />
+            <Contact t={t} />
+            <Footer lang={lang} />
+            {tweaksPanelVisible && (
+              <SimpleTweaksPanel
+                accentHue={accentHue}
+                onAccentChange={handleAccentChange}
+                onClose={() => {
+                  setTweaksPanelVisible(false);
+                  window.parent.postMessage(
+                    { type: "__edit_mode_dismissed" },
+                    "*",
+                  );
+                }}
+              />
+            )}
+          </>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
 </html>
