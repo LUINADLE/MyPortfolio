@@ -94,6 +94,15 @@
         position: relative;
         z-index: 1;
       }
+
+      @keyframes titleSlideIn {
+        from { transform: translateY(-110%); opacity: 0; }
+        to   { transform: translateY(0);     opacity: 1; }
+      }
+      @keyframes titleSlideOut {
+        from { transform: translateY(0);     opacity: 1; }
+        to   { transform: translateY(110%);  opacity: 0; }
+      }
     </style>
   </head>
   <body>
@@ -526,10 +535,14 @@
       function Hero({ t }) {
         const titles = useMemo(() => t.hero.titles, [t]);
         const [titleIndex, setTitleIndex] = useState(0);
+        const [prevIndex, setPrevIndex]   = useState(null);
+        const [tick, setTick]             = useState(0);
 
         useEffect(() => {
           const id = setTimeout(() => {
+            setPrevIndex(titleIndex);
             setTitleIndex(i => (i + 1) % titles.length);
+            setTick(t => t + 1);
           }, 2000);
           return () => clearTimeout(id);
         }, [titleIndex, titles]);
@@ -620,7 +633,8 @@
                 fontSize: "clamp(52px, 8vw, 96px)",
                 fontWeight: 700,
                 letterSpacing: "-3px",
-                lineHeight: 1.0,
+                lineHeight: 1.15,
+                paddingBottom: "0.05em",
                 marginBottom: 12,
                 background: "linear-gradient(135deg, #f0f0f5 30%, var(--text-sub) 100%)",
                 WebkitBackgroundClip: "text",
@@ -637,8 +651,8 @@
               marginBottom: 24,
               width: "100%",
             }}>
-              {titles.map((title, i) => (
-                <span key={i} style={{
+              {prevIndex !== null && (
+                <span key={`exit-${tick}`} style={{
                   position: "absolute",
                   left: 0, right: 0,
                   textAlign: "center",
@@ -647,14 +661,22 @@
                   color: "var(--accent)",
                   letterSpacing: "-0.3px",
                   lineHeight: "clamp(28px, 3.5vw, 40px)",
-                  transition: "opacity 0.5s ease, transform 0.5s ease",
-                  opacity: titleIndex === i ? 1 : 0,
-                  transform: titleIndex === i
-                    ? "translateY(0)"
-                    : titleIndex > i ? "translateY(-110%)" : "translateY(110%)",
+                  animation: "titleSlideOut 0.5s ease forwards",
                   pointerEvents: "none",
-                }}>{title}</span>
-              ))}
+                }}>{titles[prevIndex]}</span>
+              )}
+              <span key={`enter-${tick}`} style={{
+                position: "absolute",
+                left: 0, right: 0,
+                textAlign: "center",
+                fontSize: "clamp(18px, 2.5vw, 26px)",
+                fontWeight: 400,
+                color: "var(--accent)",
+                letterSpacing: "-0.3px",
+                lineHeight: "clamp(28px, 3.5vw, 40px)",
+                animation: "titleSlideIn 0.5s ease forwards",
+                pointerEvents: "none",
+              }}>{titles[titleIndex]}</span>
             </div>
             <p
               style={{
